@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Kotlin-mvvm-sample-app</string>
+    <string name="title_home">Home</string>
+    <string name="title_settings">Settings</string>
+</resources>

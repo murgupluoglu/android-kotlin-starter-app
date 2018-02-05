@@ -1,8 +1,6 @@
 package com.murgupluoglu.kotlinmvvm.di
 
 import com.murgupluoglu.kotlinmvvm.App
-import com.murgupluoglu.kotlinmvvm.MainActivity
-import com.murgupluoglu.kotlinmvvm.fragment.home.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

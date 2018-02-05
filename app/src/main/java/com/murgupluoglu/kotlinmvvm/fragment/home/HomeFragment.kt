@@ -1,18 +1,17 @@
 package com.murgupluoglu.kotlinmvvm.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.databinding.FragmentHomeBinding
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.service.ServiceInterface
-import com.murgupluoglu.kotlinmvvm.utils.Utils
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject
-import android.util.Log
 
 
 /**

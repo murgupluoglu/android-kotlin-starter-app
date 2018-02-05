@@ -1,6 +1,5 @@
 package com.murgupluoglu.kotlinmvvm.activity
 
-import android.app.Activity
 import android.os.Bundle
 import me.yokeyword.fragmentation.SupportActivity
 

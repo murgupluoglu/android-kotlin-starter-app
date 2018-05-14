@@ -7,11 +7,8 @@ import com.murgupluoglu.kotlinmvvm.BuildConfig
  * Created by mustafa.urgupluoglu on 2/5/18.
  */
 
-object Utils {
-    fun log(msg: String?) {
-        if (BuildConfig.DEBUG) {
-            if (msg != null)
-                Log.e("SPEED_LOG: ", msg)
-        }
+fun String.log() {
+    if (BuildConfig.DEBUG) {
+        Log.e("DEBUG_LOG: ", this)
     }
 }

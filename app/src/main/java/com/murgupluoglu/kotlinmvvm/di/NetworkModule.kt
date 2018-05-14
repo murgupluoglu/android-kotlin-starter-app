@@ -29,11 +29,10 @@ class NetworkModule {
             // Customize the request
             val request = original.newBuilder()
                     .header("Content-Type", "application/json")
-                    .header("AccessToken", "sabrinsonuselamettir")
                     .method(original.method(), original.body())
                     .build()
 
-// Customize or return the response
+            // Customize or return the response
             chain.proceed(request)
         }
 

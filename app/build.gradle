@@ -47,22 +47,22 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
 
     // dagger
-    implementation "com.google.dagger:dagger:2.14.1"
-    implementation "com.google.dagger:dagger-android:2.14.1"
-    implementation "com.google.dagger:dagger-android-support:2.14.1"
-    kapt "com.google.dagger:dagger-compiler:2.14.1"
-    kapt "com.google.dagger:dagger-android-processor:2.14.1"
+    implementation "com.google.dagger:dagger:2.16"
+    implementation "com.google.dagger:dagger-android:2.16"
+    implementation "com.google.dagger:dagger-android-support:2.16"
+    kapt "com.google.dagger:dagger-compiler:2.16"
+    kapt "com.google.dagger:dagger-android-processor:2.16"
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     //
 
     //RX
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     //
 }

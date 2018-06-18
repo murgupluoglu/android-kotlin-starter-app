@@ -11,7 +11,6 @@ import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import me.yokeyword.fragmentation.ISupportFragment
 import javax.inject.Inject
 
 
@@ -24,7 +23,7 @@ class HomeFragment : BaseFragment() {
     @Inject
     lateinit var serviceApi: ServiceInterface
 
-    override val layout: Int = R.layout.fragment_home
+    override val layoutId: Int = R.layout.fragment_home
 
     lateinit var viewModel: HomeViewModel
     lateinit var homeBinding: FragmentHomeBinding
@@ -46,27 +45,13 @@ class HomeFragment : BaseFragment() {
                 serviceApi.posts
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
+                .subscribe { response ->
 
                     response.forEach {
                         item -> ("Title: " + item.title).log()
                     }
 
-                })
+                }
         )
-    }
-
-    companion object {
-
-        fun newInstance(): ISupportFragment {
-
-            /*
-            Bundle args = new Bundle();
-            args.putString(Constants.PARAM_SCREEN, screen.toString());
-            fragment.setArguments(args);
-            */
-
-            return HomeFragment()
-        }
     }
 }

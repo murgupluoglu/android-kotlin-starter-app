@@ -1,13 +1,13 @@
 package com.murgupluoglu.kotlinmvvm.activity
 
 import android.os.Bundle
-import me.yokeyword.fragmentation.SupportActivity
+import android.support.v7.app.AppCompatActivity
 
 /**
  * Created by mustafa.urgupluoglu on 2/5/18.
  */
 
-abstract class BaseActivity : SupportActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

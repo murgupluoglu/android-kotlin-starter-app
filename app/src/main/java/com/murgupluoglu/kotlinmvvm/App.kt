@@ -1,7 +1,7 @@
 package com.murgupluoglu.kotlinmvvm
 
-import android.util.Log
 import com.murgupluoglu.kotlinmvvm.di.DaggerAppComponent
+import com.murgupluoglu.kotlinmvvm.utils.log
 import dagger.android.support.DaggerApplication
 
 
@@ -17,6 +17,6 @@ class App : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.e("DaggerExample", "Application onCreate")
+        "Application onCreate".log()
     }
 }

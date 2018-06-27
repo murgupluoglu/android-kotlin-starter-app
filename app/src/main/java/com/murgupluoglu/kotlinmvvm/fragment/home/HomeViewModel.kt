@@ -4,7 +4,6 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
 import android.arch.lifecycle.ViewModel
-import android.databinding.BaseObservable
 import com.murgupluoglu.kotlinmvvm.utils.log
 
 /**

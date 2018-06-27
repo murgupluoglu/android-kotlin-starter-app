@@ -1,7 +1,6 @@
 package com.murgupluoglu.kotlinmvvm
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.murgupluoglu.kotlinmvvm.activity.BaseActivity

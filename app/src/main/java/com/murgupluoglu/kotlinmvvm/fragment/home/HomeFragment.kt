@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment() {
     lateinit var viewModel: HomeViewModel
     lateinit var homeBinding: FragmentHomeBinding
 
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

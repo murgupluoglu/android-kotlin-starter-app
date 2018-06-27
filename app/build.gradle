@@ -36,6 +36,7 @@ ext {
     navigationVersion = "1.0.0-alpha02"
     constraintLayoutVersion = "1.1.2"
     daggerVersion = "2.16"
+    koin_version = "0.9.3"
 }
 
 dependencies {
@@ -80,4 +81,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui:$navigationVersion"
     //
+
+    //koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-architecture:$koin_version"
 }

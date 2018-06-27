@@ -1,8 +1,10 @@
 package com.murgupluoglu.kotlinmvvm
 
 import com.murgupluoglu.kotlinmvvm.di.DaggerAppComponent
+import com.murgupluoglu.kotlinmvvm.di.koin.myModule
 import com.murgupluoglu.kotlinmvvm.utils.log
 import dagger.android.support.DaggerApplication
+import org.koin.android.ext.android.startKoin
 
 
 /**
@@ -18,5 +20,6 @@ class App : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         "Application onCreate".log()
+        startKoin(this, listOf(myModule))
     }
 }

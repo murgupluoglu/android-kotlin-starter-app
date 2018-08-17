@@ -1,16 +1,21 @@
 package com.murgupluoglu.kotlinmvvm.fragment.home
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.databinding.FragmentHomeBinding
+import com.murgupluoglu.kotlinmvvm.di.koin.MyRepository
+import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.service.ServiceInterface
+import com.murgupluoglu.kotlinmvvm.utils.CustomViewModelFactory
 import com.murgupluoglu.kotlinmvvm.utils.log
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.koin.android.ext.android.inject
 import javax.inject.Inject
 
 
@@ -30,12 +35,14 @@ class HomeFragment : BaseFragment() {
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
+    val networkModule : NetworkModule by inject()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AndroidSupportInjection.inject(this)
         homeBinding = binding as FragmentHomeBinding
 
-        viewModel = HomeViewModel()
+        viewModel = ViewModelProviders.of(this, CustomViewModelFactory(networkModule)).get(HomeViewModel::class.java)
         getLifecycle().addObserver(viewModel)
 
         homeBinding.setModel(viewModel)

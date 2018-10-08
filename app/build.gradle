@@ -33,8 +33,8 @@ kapt {
 
 ext {
     supportLibVersion = "28.+"
-    navigationVersion = "1.0.0-alpha02"
-    constraintLayoutVersion = "1.1.2"
+    navigationVersion = "1.0.0-alpha06"
+    constraintLayoutVersion = "1.1.3"
     daggerVersion = "2.16"
     koin_version = "0.9.3"
 }
@@ -54,7 +54,7 @@ dependencies {
     implementation "com.android.support:support-vector-drawable:$supportLibVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     implementation 'android.arch.lifecycle:extensions:1.1.1'
-    kapt 'com.android.databinding:compiler:3.1.3'
+    //kapt 'com.android.databinding:compiler:3.1.4'
 
     //dagger
     implementation "com.google.dagger:dagger:$daggerVersion"

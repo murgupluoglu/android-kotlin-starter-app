@@ -21,5 +21,4 @@ internal abstract class UiModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeSettingsFragment(): SettingsFragment
-
 }

@@ -43,9 +43,9 @@ class HomeFragment : BaseFragment() {
         homeBinding = binding as FragmentHomeBinding
 
         viewModel = ViewModelProviders.of(this, CustomViewModelFactory(networkModule)).get(HomeViewModel::class.java)
-        getLifecycle().addObserver(viewModel)
+        lifecycle.addObserver(viewModel)
 
-        homeBinding.setModel(viewModel)
+        homeBinding.model = viewModel
 
 
         compositeDisposable.add(

@@ -1,0 +1,39 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="model"
+            type="com.murgupluoglu.kotlinmvvm.fragment.recyclerview.RecyclerViewItemModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutConstraintText"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:onClick="@{clickListener}"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpagbindViewPagerer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:bindViewPager="@{model.array}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>

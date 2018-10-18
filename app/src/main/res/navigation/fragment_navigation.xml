@@ -11,4 +11,8 @@
         android:id="@+id/settingsFragment"
         android:name="com.murgupluoglu.kotlinmvvm.fragment.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.murgupluoglu.kotlinmvvm.fragment.recyclerview.RecyclerViewFragment"
+        android:label="RecyclerViewFragment" />
 </navigation>

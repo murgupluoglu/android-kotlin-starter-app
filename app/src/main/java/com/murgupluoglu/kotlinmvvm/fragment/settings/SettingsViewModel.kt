@@ -1,7 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.fragment.settings
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse
 import io.reactivex.android.schedulers.AndroidSchedulers

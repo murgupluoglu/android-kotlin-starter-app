@@ -1,16 +1,16 @@
 package com.murgupluoglu.kotlinmvvm.fragment.settings
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.databinding.FragmentSettingsBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.MyRepository
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
-import org.koin.android.ext.android.inject
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse
 import com.murgupluoglu.kotlinmvvm.utils.log
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 /**
@@ -33,7 +33,7 @@ class SettingsFragment : BaseFragment() {
 
         presenter.giveHello().log()
 
-        settingsViewModel.genericResponsList.observe(this, object : Observer<List<GenericResponse>> {
+        settingsViewModel.genericResponsList.observe(this@SettingsFragment, object : Observer<List<GenericResponse>> {
             override fun onChanged(result: List<GenericResponse>?) {
                 result!!.forEachIndexed { index, one ->
                     one.title.log()

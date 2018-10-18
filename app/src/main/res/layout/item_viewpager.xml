@@ -12,7 +12,7 @@
             type="com.murgupluoglu.kotlinmvvm.fragment.recyclerview.ViewPagerItem" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

@@ -1,10 +1,10 @@
 package com.murgupluoglu.kotlinmvvm.fragment.recyclerview
 
-import android.support.constraint.ConstraintLayout
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.PagerAdapter
 import com.murgupluoglu.kotlinmvvm.databinding.ItemViewpagerBinding
 
 class ViewPagerAdapter(val items: ArrayList<ViewPagerItem>) : PagerAdapter() {

@@ -1,10 +1,10 @@
 package com.murgupluoglu.kotlinmvvm.fragment.recyclerview
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.databinding.FragmentRecyclerviewBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
 import org.koin.android.ext.android.inject
-import java.util.ArrayList
+
 
 class RecyclerViewFragment : BaseFragment() {
 

@@ -1,10 +1,11 @@
 package com.murgupluoglu.kotlinmvvm.utils
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.fragment.home.HomeViewModel
 import com.murgupluoglu.kotlinmvvm.fragment.recyclerview.RecyclerViewModel
+
 
 class CustomViewModelFactory(private val networkModule: NetworkModule) : ViewModelProvider.NewInstanceFactory() {
 

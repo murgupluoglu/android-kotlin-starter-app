@@ -1,8 +1,8 @@
 package com.murgupluoglu.kotlinmvvm.fragment.recyclerview
 
-import android.databinding.BindingAdapter
-import android.support.v4.view.ViewPager
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 
 enum class RecyclerViewItemTypes{

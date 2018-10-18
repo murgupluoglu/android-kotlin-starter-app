@@ -1,7 +1,8 @@
 package com.murgupluoglu.kotlinmvvm.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+
 
 /**
  * Created by mustafa.urgupluoglu on 2/5/18.

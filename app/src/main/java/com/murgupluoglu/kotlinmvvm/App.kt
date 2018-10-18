@@ -3,7 +3,6 @@ package com.murgupluoglu.kotlinmvvm
 import android.app.Application
 import com.murgupluoglu.kotlinmvvm.di.koin.myModule
 import com.murgupluoglu.kotlinmvvm.utils.log
-import dagger.android.support.DaggerApplication
 import org.koin.android.ext.android.startKoin
 
 

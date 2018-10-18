@@ -7,15 +7,12 @@ import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.databinding.FragmentHomeBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
-import com.murgupluoglu.kotlinmvvm.service.ServiceInterface
 import com.murgupluoglu.kotlinmvvm.utils.CustomViewModelFactory
 import com.murgupluoglu.kotlinmvvm.utils.log
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
-import javax.inject.Inject
 
 
 /**

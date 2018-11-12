@@ -1,4 +1,4 @@
-package com.murgupluoglu.kotlinmvvm.di
+package com.murgupluoglu.kotlinmvvm.di.dagger
 
 import com.murgupluoglu.kotlinmvvm.MainActivity
 import com.murgupluoglu.kotlinmvvm.fragment.home.HomeFragment

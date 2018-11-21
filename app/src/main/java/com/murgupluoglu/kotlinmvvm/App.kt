@@ -3,7 +3,7 @@ package com.murgupluoglu.kotlinmvvm
 import android.app.Application
 import com.murgupluoglu.kotlinmvvm.di.koin.myModule
 import com.murgupluoglu.kotlinmvvm.utils.log
-import org.koin.android.ext.android.startKoin
+import org.koin.standalone.StandAloneContext.startKoin
 
 
 /**
@@ -19,6 +19,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         "Application onCreate".log()
-        startKoin(this, listOf(myModule))
+        startKoin(listOf(myModule))
     }
 }

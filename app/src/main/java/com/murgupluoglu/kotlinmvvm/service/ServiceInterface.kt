@@ -1,7 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.service
 
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse
-import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 /**
@@ -10,6 +10,7 @@ import retrofit2.http.GET
 
 interface ServiceInterface {
 
-    @get:GET("/posts")
-    val posts: Observable<List<GenericResponse>>
+    @GET("/posts")
+    fun getPosts(): Deferred<List<GenericResponse>>
+
 }

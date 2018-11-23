@@ -9,9 +9,10 @@ import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.utils.CustomViewModelFactory
 import com.murgupluoglu.kotlinmvvm.utils.log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
 
@@ -29,8 +30,6 @@ class HomeFragment : BaseFragment() {
     lateinit var viewModel: HomeViewModel
     lateinit var homeBinding: FragmentHomeBinding
 
-    val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
     val networkModule : NetworkModule by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,17 +43,14 @@ class HomeFragment : BaseFragment() {
         homeBinding.model = viewModel
 
 
-        compositeDisposable.add(
-                networkModule.service().posts
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { response ->
+        val myJob = CoroutineScope(Dispatchers.IO).launch {
+            val result = networkModule.service().getPosts().await()
 
-                    response.forEach {
-                        item -> ("Title: " + item.title).log()
-                    }
-
+            withContext(Dispatchers.Main) {
+                result.forEach { item ->
+                    ("Title: " + item.title).log()
                 }
-        )
+            }
+        }
     }
 }

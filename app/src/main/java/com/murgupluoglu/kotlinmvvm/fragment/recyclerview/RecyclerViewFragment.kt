@@ -10,10 +10,11 @@ import com.murgupluoglu.kotlinmvvm.databinding.FragmentRecyclerviewBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.utils.CustomViewModelFactory
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
 
@@ -24,9 +25,7 @@ class RecyclerViewFragment : BaseFragment() {
     lateinit var viewModel: RecyclerViewModel
     lateinit var fragmnetBinding: FragmentRecyclerviewBinding
 
-    val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-    val networkModule : NetworkModule by inject()
+    val networkModule: NetworkModule by inject()
 
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
     val items: ArrayList<RecyclerViewItemModel> = arrayListOf()
@@ -49,7 +48,7 @@ class RecyclerViewFragment : BaseFragment() {
         })
         testRecylerView.adapter = recyclerViewAdapter
 
-        val array : ArrayList<ViewPagerItem> = arrayListOf()
+        val array: ArrayList<ViewPagerItem> = arrayListOf()
 
         val item = ViewPagerItem(
                 "title",
@@ -60,24 +59,23 @@ class RecyclerViewFragment : BaseFragment() {
         items.add(RecyclerViewItemModel(RecyclerViewItemTypes.ITEM_VIEWPAGER.ordinal, "", "", "", "", array))
         items.add(RecyclerViewItemModel(RecyclerViewItemTypes.ITEM_VIEWPAGER.ordinal, "", "", "", "", array))
 
-        compositeDisposable.add(
-                networkModule.service().posts
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe { response ->
-                            response.forEachIndexed { index, genericResponse ->
-                                val item = RecyclerViewItemModel(
-                                        RecyclerViewItemTypes.ITEM_ONE.ordinal,
-                                        genericResponse.id,
-                                        genericResponse.title,
-                                        genericResponse.title.reversed(),
-                                        genericResponse.body,
-                                        null)
-                                items.add(item)
-                            }
-                            items.add(RecyclerViewItemModel(RecyclerViewItemTypes.ITEM_VIEWPAGER.ordinal, "", "", "", "", array))
-                            recyclerViewAdapter.submitList(items)
-                        }
-        )
+        val myJob = CoroutineScope(Dispatchers.IO).launch {
+            val result = networkModule.service().getPosts().await()
+
+            withContext(Dispatchers.Main) {
+                result.forEach {
+                    val model = RecyclerViewItemModel(
+                            RecyclerViewItemTypes.ITEM_ONE.ordinal,
+                            it.id,
+                            it.title,
+                            it.title.reversed(),
+                            it.body,
+                            null)
+                    items.add(model)
+                }
+                items.add(RecyclerViewItemModel(RecyclerViewItemTypes.ITEM_VIEWPAGER.ordinal, "", "", "", "", array))
+                recyclerViewAdapter.submitList(items)
+            }
+        }
     }
 }

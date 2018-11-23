@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /**
  * Created by mustafa.urgupluoglu on 2/5/18.
@@ -15,22 +15,20 @@ import io.reactivex.schedulers.Schedulers
 
 class SettingsViewModel(val networkModule: NetworkModule) : ViewModel(){
 
-    val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
     val genericResponsList: MutableLiveData<List<GenericResponse>> = MutableLiveData()
 
+    private val job = Job()
+    private val scope = CoroutineScope(job + Dispatchers.Main)
+
     fun getServerData(){
-        compositeDisposable.add(
-                networkModule.service().posts
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe { response ->
-                            genericResponsList.value = response
-                        }
-        )
+        scope.launch {
+            val result = networkModule.service().getPosts().await()
+
+            genericResponsList.value = result
+        }
     }
 
     override fun onCleared(){
-        compositeDisposable.clear()
+        job.cancel()
     }
 }

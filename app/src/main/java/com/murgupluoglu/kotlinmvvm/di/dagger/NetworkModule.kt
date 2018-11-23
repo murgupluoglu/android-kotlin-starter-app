@@ -1,10 +1,10 @@
 package com.murgupluoglu.kotlinmvvm.di.dagger
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.murgupluoglu.kotlinmvvm.service.ServiceInterface
 import dagger.Module
 import dagger.Provides
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -38,7 +38,7 @@ class NetworkModule {
 
         val clt = httpClient.build()
         val retrofit = retrofit2.Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .client(clt)

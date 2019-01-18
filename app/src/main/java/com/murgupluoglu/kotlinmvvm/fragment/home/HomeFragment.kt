@@ -22,8 +22,8 @@ import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment() {
 
-//    @Inject
-//    lateinit var serviceApi: ServiceInterface
+    //@Inject
+    //lateinit var serviceApi: ServiceInterface
 
     override val layoutId: Int = R.layout.fragment_home
 

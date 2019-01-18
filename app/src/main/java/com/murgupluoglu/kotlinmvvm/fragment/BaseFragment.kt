@@ -22,7 +22,7 @@ abstract class BaseFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return binding.getRoot()
+        return binding.root
 
     }
 

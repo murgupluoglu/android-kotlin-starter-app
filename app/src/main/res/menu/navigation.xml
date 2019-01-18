@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_recyclerview" />
 
+    <item
+        android:id="@+id/peopleFragment"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="@string/title_people" />
+
 </menu>

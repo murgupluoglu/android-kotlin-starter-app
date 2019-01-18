@@ -43,7 +43,7 @@ class RecyclerViewFragment : BaseFragment() {
         testRecylerView.layoutManager = LinearLayoutManager(context)
         recyclerViewAdapter = RecyclerViewAdapter(object : RecyclerViewAdapter.RecyclerViewClickListener {
             override fun itemClicked(position: Int) {
-                Log.d("RecyclerViewAdapter", "clicked: " + position)
+                Log.d("RecyclerViewAdapter", "clicked: $position")
             }
         })
         testRecylerView.adapter = recyclerViewAdapter
@@ -66,10 +66,10 @@ class RecyclerViewFragment : BaseFragment() {
                 result.forEach {
                     val model = RecyclerViewItemModel(
                             RecyclerViewItemTypes.ITEM_ONE.ordinal,
-                            it.id,
-                            it.title,
-                            it.title.reversed(),
-                            it.body,
+                            it.errorMessage,
+                            it.errorMessage,
+                            it.errorMessage.reversed(),
+                            it.errorMessage,
                             null)
                     items.add(model)
                 }

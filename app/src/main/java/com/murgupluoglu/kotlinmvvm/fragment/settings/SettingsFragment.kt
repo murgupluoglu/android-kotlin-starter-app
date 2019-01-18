@@ -21,7 +21,7 @@ class SettingsFragment : BaseFragment() {
 
     override val layoutId: Int get() = R.layout.fragment_settings
 
-    lateinit var homeBinding: FragmentSettingsBinding
+    //lateinit var bind: FragmentSettingsBinding
 
     val presenter : MyRepository by inject()
 
@@ -29,15 +29,13 @@ class SettingsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeBinding = binding as FragmentSettingsBinding
+        //bind = binding as FragmentSettingsBinding
 
         presenter.giveHello().log()
 
-        settingsViewModel.genericResponsList.observe(this@SettingsFragment, object : Observer<List<GenericResponse>> {
-            override fun onChanged(result: List<GenericResponse>?) {
-                result!!.forEachIndexed { index, one ->
-                    one.title.log()
-                }
+        settingsViewModel.genericResponsList.observe(this@SettingsFragment, Observer<List<GenericResponse>> { result ->
+            result!!.forEachIndexed { index, one ->
+                one.toString().log()
             }
         })
 

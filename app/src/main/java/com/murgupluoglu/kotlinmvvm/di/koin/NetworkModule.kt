@@ -32,7 +32,7 @@ class NetworkModule{
         val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .baseUrl("https://api.randomuser.me")
                 .client(clt)
                 .build()
 

@@ -15,4 +15,8 @@
         android:id="@+id/recyclerViewFragment"
         android:name="com.murgupluoglu.kotlinmvvm.fragment.recyclerview.RecyclerViewFragment"
         android:label="RecyclerViewFragment" />
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.murgupluoglu.kotlinmvvm.fragment.people.PeopleFragment"
+        android:label="PeopleFragment" />
 </navigation>

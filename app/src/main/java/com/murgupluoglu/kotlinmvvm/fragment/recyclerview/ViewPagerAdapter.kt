@@ -19,7 +19,7 @@ class ViewPagerAdapter(val items: ArrayList<ViewPagerItem>) : PagerAdapter() {
         val binding = ItemViewpagerBinding.inflate(LayoutInflater.from(container.context), container, false)
 
         binding.apply {
-            val test = items.get(position)
+            val test = items[position]
             itemviewpager = test
         }
 

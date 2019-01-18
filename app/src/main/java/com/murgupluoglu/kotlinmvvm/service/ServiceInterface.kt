@@ -1,6 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.service
 
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse
+import com.murgupluoglu.kotlinmvvm.model.PeopleResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
@@ -12,5 +13,8 @@ interface ServiceInterface {
 
     @GET("/posts")
     fun getPosts(): Deferred<List<GenericResponse>>
+
+    @GET("/")
+    fun getPeoples(): Deferred<PeopleResponse>
 
 }

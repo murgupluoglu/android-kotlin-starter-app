@@ -1,6 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.murgupluoglu.kotlinmvvm.R
@@ -14,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 
 
 /**
@@ -44,12 +46,16 @@ class HomeFragment : BaseFragment() {
 
 
         val myJob = CoroutineScope(Dispatchers.IO).launch {
-            val result = networkModule.service().getPosts().await()
+            try {
+                val result = networkModule.service().getPosts().await()
 
-            withContext(Dispatchers.Main) {
-                result.forEach { item ->
-                    ("Title: " + item.title).log()
+                withContext(Dispatchers.Main) {
+                    result.forEach { item ->
+                        ("Title: $item").log()
+                    }
                 }
+            } catch (httpE: HttpException) {
+                Log.e("HttpException", httpE.code().toString())
             }
         }
     }

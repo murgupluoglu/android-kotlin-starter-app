@@ -2,17 +2,14 @@ package com.murgupluoglu.kotlinmvvm.fragment.people
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.blankj.utilcode.util.Utils
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.model.*
 import kotlinx.coroutines.*
-import retrofit2.HttpException
-import java.net.UnknownHostException
 
 /**
  * Created by Mustafa Urgupluoglu on 18.01.2019.
  */
-
-class UserViewModel(var imageUrl : String, var name : String, var phone : String)
 
 class PeopleViewModel(val networkModule: NetworkModule) : ViewModel(){
 
@@ -21,7 +18,18 @@ class PeopleViewModel(val networkModule: NetworkModule) : ViewModel(){
 
 
     fun getPeoples(){
-        job = requestGenericResponse(networkModule.service().getPeoples(50), peopleResponse)
+        job = requestGenericResponse(networkModule.service().getPeoples(50), peopleResponse, returnFromCache = {getFromCache()})
+    }
+
+    fun getFromCache() : Any? {
+        val boxStore = MyObjectBox.builder().androidContext(Utils.getApp()).build()
+        val userBox = boxStore.boxFor(User::class.java)
+        val users = userBox.all
+
+        val peopleResponse = PeopleResponse()
+        peopleResponse.results = users
+
+        return peopleResponse
     }
 
     override fun onCleared(){

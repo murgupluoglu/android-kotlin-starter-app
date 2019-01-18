@@ -17,10 +17,11 @@ data class GenericResponse(
         var status: Int = STATUS_LOADING,
         var errorCode: Int = -1,
         var errorMessage: String = "",
+        var isFromCache: Boolean = false,
         var responseObject: Any = -1
 )
 
-fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>): Job {
+fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, returnFromCache: () -> Any?): Job {
     val job = Job()
     val scope = CoroutineScope(job + Dispatchers.Main)
 
@@ -30,6 +31,15 @@ fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>):
         response.status = STATUS_LOADING
         liveData.value = response
 
+        val cacheValue = returnFromCache()
+        if(cacheValue != null){
+            response.status = STATUS_SUCCESS
+            response.isFromCache = true
+            response.responseObject = cacheValue
+            liveData.value = response
+        }
+
+        response.isFromCache = false
         try {
             val result = deferred.await()
             response.status = STATUS_SUCCESS

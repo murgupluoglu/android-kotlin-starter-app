@@ -94,4 +94,11 @@ dependencies {
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
+
+    //Generic Utils
+    implementation 'com.blankj:utilcode:1.23.0'
+
+    //For test usage
+    implementation 'com.classic.common:multiple-status-view:1.5.1'
+    implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
 }

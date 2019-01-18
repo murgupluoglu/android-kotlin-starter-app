@@ -1,6 +1,7 @@
 package com.murgupluoglu.kotlinmvvm
 
 import android.app.Application
+import com.blankj.utilcode.util.Utils
 import com.murgupluoglu.kotlinmvvm.di.koin.myModule
 import com.murgupluoglu.kotlinmvvm.utils.log
 import org.koin.standalone.StandAloneContext.startKoin
@@ -20,5 +21,6 @@ class App : Application() {
         super.onCreate()
         "Application onCreate".log()
         startKoin(listOf(myModule))
+        Utils.init(this)
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.murgupluoglu.kotlinmvvm.R
-import com.murgupluoglu.kotlinmvvm.databinding.FragmentSettingsBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.MyRepository
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.model.GenericResponse

@@ -3,10 +3,15 @@ package com.murgupluoglu.kotlinmvvm.fragment.people
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.blankj.utilcode.util.LogUtils
+import com.github.nitrico.lastadapter.LastAdapter
+import com.github.nitrico.lastadapter.Type
+import com.murgupluoglu.kotlinmvvm.BR
 import com.murgupluoglu.kotlinmvvm.R
+import com.murgupluoglu.kotlinmvvm.databinding.ItemUserBinding
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
-import com.murgupluoglu.kotlinmvvm.model.GenericResponse
-import com.murgupluoglu.kotlinmvvm.model.User
+import com.murgupluoglu.kotlinmvvm.model.*
+import kotlinx.android.synthetic.main.fragment_people.*
 import org.koin.android.ext.android.inject
 
 /**
@@ -23,13 +28,27 @@ class PeopleFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         @Suppress("UNCHECKED_CAST")
-        peopleViewModel.userResponse.observe(this@PeopleFragment, Observer<GenericResponse> { result ->
-            if(result.hasError){
-                //Error
-            }else{
-                val users = result.responseObject as List<User>
-                users.forEach {
-                    println(it)
+        peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<GenericResponse> { result ->
+            LogUtils.e("RESULT $result")
+            when(result.status){
+                STATUS_LOADING -> {
+                    multipleStatusView.showLoading()
+                }
+                STATUS_SUCCESS -> {
+                    multipleStatusView.showContent()
+
+                    val peopleResponse = result.responseObject as PeopleResponse
+
+                    LastAdapter(peopleResponse.results, BR.viewModel)
+                            .map<User>(
+                                    Type<ItemUserBinding>(R.layout.item_user)
+                                            .onBind {}
+                            )
+                            .into(testRecylerView)
+
+                }
+                STATUS_ERROR -> {
+                    multipleStatusView.showError()
                 }
             }
         })

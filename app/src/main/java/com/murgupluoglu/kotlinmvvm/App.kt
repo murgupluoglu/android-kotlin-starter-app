@@ -4,6 +4,7 @@ import android.app.Application
 import com.blankj.utilcode.util.Utils
 import com.murgupluoglu.kotlinmvvm.di.koin.myModule
 import com.murgupluoglu.kotlinmvvm.utils.log
+import io.paperdb.Paper
 import org.koin.standalone.StandAloneContext.startKoin
 
 
@@ -22,5 +23,6 @@ class App : Application() {
         "Application onCreate".log()
         startKoin(listOf(myModule))
         Utils.init(this)
+        Paper.init(this)
     }
 }

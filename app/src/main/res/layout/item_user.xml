@@ -19,6 +19,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            app:loadImage="@{viewModel.picture.thumbnail}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +36,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Name Surname" />
+            tools:text="Name Surname"
+            android:text="@{viewModel.email}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

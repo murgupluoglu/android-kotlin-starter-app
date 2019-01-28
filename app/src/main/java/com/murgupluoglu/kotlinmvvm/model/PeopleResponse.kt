@@ -1,10 +1,5 @@
 package com.murgupluoglu.kotlinmvvm.model
 
-import com.google.gson.annotations.SerializedName
-import io.objectbox.annotation.Entity
-import io.objectbox.annotation.Id
-import io.objectbox.relation.ToOne
-
 /**
  * Created by Mustafa Urgupluoglu on 18.01.2019.
  */
@@ -20,23 +15,19 @@ data class Info(
         val version: String
 )
 
-@Entity
 data class User(
         var cell: String,
-        //val dob: Dob,
-        @SerializedName("specialid")
-        @Id
-        var id: Long,
+        val dob: Dob,
         var email: String,
         var gender: String,
-        //val id: IdClass,
-        //val location: Location,
-        //val login: Login,
-        //val name: Name,
+        val id: IdClass,
+        val location: Location,
+        val login: Login,
+        val name: Name,
         var nat: String,
-        var phone: String
-        //val picture : ToOne<Picture>
-        //val registered: Registered
+        var phone: String,
+        val picture : Picture,
+        val registered: Registered
 )
 
 data class Picture(

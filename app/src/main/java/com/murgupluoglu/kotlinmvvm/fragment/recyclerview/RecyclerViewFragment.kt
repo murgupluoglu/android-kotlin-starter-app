@@ -60,16 +60,16 @@ class RecyclerViewFragment : BaseFragment() {
         items.add(RecyclerViewItemModel(RecyclerViewItemTypes.ITEM_VIEWPAGER.ordinal, "", "", "", "", array))
 
         val myJob = CoroutineScope(Dispatchers.IO).launch {
-            val result = networkModule.service().getPosts().await()
+            val result = networkModule.service().getPosts("https://jsonplaceholder.typicode.com/posts").await()
 
             withContext(Dispatchers.Main) {
                 result.forEach {
                     val model = RecyclerViewItemModel(
                             RecyclerViewItemTypes.ITEM_ONE.ordinal,
-                            it.errorMessage,
-                            it.errorMessage,
-                            it.errorMessage.reversed(),
-                            it.errorMessage,
+                            it.id.toString(),
+                            it.title,
+                            it.title.reversed(),
+                            it.body,
                             null)
                     items.add(model)
                 }

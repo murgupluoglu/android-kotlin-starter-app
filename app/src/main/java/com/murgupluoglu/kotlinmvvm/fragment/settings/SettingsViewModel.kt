@@ -3,7 +3,7 @@ package com.murgupluoglu.kotlinmvvm.fragment.settings
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
-import com.murgupluoglu.kotlinmvvm.model.GenericResponse
+import com.murgupluoglu.kotlinmvvm.model.JsonPlaceHolderResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,14 +15,14 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModel(val networkModule: NetworkModule) : ViewModel(){
 
-    val genericResponsList: MutableLiveData<List<GenericResponse>> = MutableLiveData()
+    val genericResponsList: MutableLiveData<List<JsonPlaceHolderResponse>> = MutableLiveData()
 
     private val job = Job()
     private val scope = CoroutineScope(job + Dispatchers.Main)
 
     fun getServerData(){
         scope.launch {
-            val result = networkModule.service().getPosts().await()
+            val result = networkModule.service().getPosts("https://jsonplaceholder.typicode.com/posts").await()
 
             genericResponsList.value = result
         }

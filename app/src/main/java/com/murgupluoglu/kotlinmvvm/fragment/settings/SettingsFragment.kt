@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.di.koin.MyRepository
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
-import com.murgupluoglu.kotlinmvvm.model.GenericResponse
+import com.murgupluoglu.kotlinmvvm.model.JsonPlaceHolderResponse
 import com.murgupluoglu.kotlinmvvm.utils.log
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -32,7 +32,7 @@ class SettingsFragment : BaseFragment() {
 
         presenter.giveHello().log()
 
-        settingsViewModel.genericResponsList.observe(this@SettingsFragment, Observer<List<GenericResponse>> { result ->
+        settingsViewModel.genericResponsList.observe(this@SettingsFragment, Observer<List<JsonPlaceHolderResponse>> { result ->
             result!!.forEachIndexed { index, one ->
                 one.toString().log()
             }

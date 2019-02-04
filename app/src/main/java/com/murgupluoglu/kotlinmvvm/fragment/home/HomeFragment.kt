@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment() {
 
         val myJob = CoroutineScope(Dispatchers.IO).launch {
             try {
-                val result = networkModule.service().getPosts().await()
+                val result = networkModule.service().getPosts("https://jsonplaceholder.typicode.com/posts").await()
 
                 withContext(Dispatchers.Main) {
                     result.forEach { item ->

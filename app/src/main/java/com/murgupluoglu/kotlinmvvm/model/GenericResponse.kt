@@ -13,7 +13,7 @@ const val STATUS_LOADING = 1
 const val STATUS_SUCCESS = 2
 const val STATUS_ERROR = 3
 
-data class GenericResponse<T>(
+data class RESPONSE<T>(
         var status: Int = STATUS_LOADING,
         var errorCode: Int = -1,
         var errorMessage: String = "",
@@ -21,22 +21,23 @@ data class GenericResponse<T>(
         var responseObject: T? = null
 )
 
-fun <T> MutableLiveData<GenericResponse<T>>.requestGenericResponse(deferred: Deferred<*>, returnFromCache: () -> Any?): Job {
+fun <T> MutableLiveData<RESPONSE<T>>.request(deferred: Deferred<*>, returnFromCache: () -> Any?): Job {
+
     val job = Job()
     val scope = CoroutineScope(job + Dispatchers.Main)
 
     scope.launch {
 
-        val response = GenericResponse<T>()
+        val response = RESPONSE<T>()
         response.status = STATUS_LOADING
-        this@requestGenericResponse.value = response
+        this@request.value = response
 
         val cacheValue = returnFromCache()
         if(cacheValue != null){
             response.status = STATUS_SUCCESS
             response.isFromCache = true
             response.responseObject =  cacheValue as T
-            this@requestGenericResponse.value = response
+            this@request.value = response
         }
 
         response.isFromCache = false
@@ -51,48 +52,12 @@ fun <T> MutableLiveData<GenericResponse<T>>.requestGenericResponse(deferred: Def
         } catch (unknownHostE: UnknownHostException) {
             response.status = STATUS_ERROR
             response.errorMessage = unknownHostE.message.toString()
-        }
-
-        this@requestGenericResponse.value = response
-    }
-
-    return job
-}
-
-fun <T>requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, returnFromCache: () -> Any?): Job {
-
-    val job = Job()
-    val scope = CoroutineScope(job + Dispatchers.Main)
-
-    scope.launch {
-
-        val response = GenericResponse<T>()
-        response.status = STATUS_LOADING
-        liveData.value = response
-
-        val cacheValue = returnFromCache()
-        if(cacheValue != null){
-            response.status = STATUS_SUCCESS
-            response.isFromCache = true
-            response.responseObject =  cacheValue as T
-            liveData.value = response
-        }
-
-        response.isFromCache = false
-        try {
-            val result = deferred.await()
-            response.status = STATUS_SUCCESS
-            response.responseObject = result as T
-        } catch (httpE: HttpException) {
+        } catch (e : Exception){
             response.status = STATUS_ERROR
-            response.errorMessage = httpE.message()
-            response.errorCode = httpE.code()
-        } catch (unknownHostE: UnknownHostException) {
-            response.status = STATUS_ERROR
-            response.errorMessage = unknownHostE.message.toString()
+            response.errorMessage = e.message.toString()
         }
 
-        liveData.value = response
+        this@request.value = response
     }
 
     return job

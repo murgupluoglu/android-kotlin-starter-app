@@ -29,7 +29,7 @@ class PeopleFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         @Suppress("UNCHECKED_CAST")
-        peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<GenericResponse<PeopleResponse>> { result ->
+        peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<RESPONSE<PeopleResponse>> { result ->
             LogUtils.e("RESULT $result")
             when(result.status){
                 STATUS_LOADING -> {
@@ -38,9 +38,8 @@ class PeopleFragment : BaseFragment() {
                 STATUS_SUCCESS -> {
                     multipleStatusView.showContent()
 
-                    val peopleResponse = result.responseObject
+                    result.responseObject?.let {
 
-                    peopleResponse?.let {
                         if(!result.isFromCache){
                             Paper.book().write("PEOPLE_RESULT", it.results)
                         }

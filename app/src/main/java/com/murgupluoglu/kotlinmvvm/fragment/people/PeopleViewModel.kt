@@ -3,10 +3,10 @@ package com.murgupluoglu.kotlinmvvm.fragment.people
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
-import com.murgupluoglu.kotlinmvvm.model.GenericResponse
 import com.murgupluoglu.kotlinmvvm.model.PeopleResponse
+import com.murgupluoglu.kotlinmvvm.model.RESPONSE
 import com.murgupluoglu.kotlinmvvm.model.User
-import com.murgupluoglu.kotlinmvvm.model.requestGenericResponse
+import com.murgupluoglu.kotlinmvvm.model.request
 import io.paperdb.Paper
 import kotlinx.coroutines.Job
 
@@ -16,12 +16,12 @@ import kotlinx.coroutines.Job
 
 class PeopleViewModel(val networkModule: NetworkModule) : ViewModel(){
 
-    val peopleResponse: MutableLiveData<GenericResponse<PeopleResponse>> = MutableLiveData()
+    val peopleResponse: MutableLiveData<RESPONSE<PeopleResponse>> = MutableLiveData()
     var job = Job()
 
 
     fun getPeoples(){
-        job = peopleResponse.requestGenericResponse(networkModule.service().getPeoples(50), returnFromCache = {getFromCache()})
+        job = peopleResponse.request(networkModule.service().getPeoples(50), returnFromCache = {getFromCache()})
     }
 
     fun getFromCache() : Any? {

@@ -13,21 +13,60 @@ const val STATUS_LOADING = 1
 const val STATUS_SUCCESS = 2
 const val STATUS_ERROR = 3
 
-data class GenericResponse(
+data class GenericResponse<T>(
         var status: Int = STATUS_LOADING,
         var errorCode: Int = -1,
         var errorMessage: String = "",
         var isFromCache: Boolean = false,
-        var responseObject: Any = -1
+        var responseObject: T? = null
 )
 
-fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, returnFromCache: () -> Any?): Job {
+fun <T> MutableLiveData<GenericResponse<T>>.requestGenericResponse(deferred: Deferred<*>, returnFromCache: () -> Any?): Job {
     val job = Job()
     val scope = CoroutineScope(job + Dispatchers.Main)
 
     scope.launch {
 
-        val response = GenericResponse()
+        val response = GenericResponse<T>()
+        response.status = STATUS_LOADING
+        this@requestGenericResponse.value = response
+
+        val cacheValue = returnFromCache()
+        if(cacheValue != null){
+            response.status = STATUS_SUCCESS
+            response.isFromCache = true
+            response.responseObject =  cacheValue as T
+            this@requestGenericResponse.value = response
+        }
+
+        response.isFromCache = false
+        try {
+            val result = deferred.await()
+            response.status = STATUS_SUCCESS
+            response.responseObject = result as T
+        } catch (httpE: HttpException) {
+            response.status = STATUS_ERROR
+            response.errorMessage = httpE.message()
+            response.errorCode = httpE.code()
+        } catch (unknownHostE: UnknownHostException) {
+            response.status = STATUS_ERROR
+            response.errorMessage = unknownHostE.message.toString()
+        }
+
+        this@requestGenericResponse.value = response
+    }
+
+    return job
+}
+
+fun <T>requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, returnFromCache: () -> Any?): Job {
+
+    val job = Job()
+    val scope = CoroutineScope(job + Dispatchers.Main)
+
+    scope.launch {
+
+        val response = GenericResponse<T>()
         response.status = STATUS_LOADING
         liveData.value = response
 
@@ -35,7 +74,7 @@ fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, 
         if(cacheValue != null){
             response.status = STATUS_SUCCESS
             response.isFromCache = true
-            response.responseObject = cacheValue
+            response.responseObject =  cacheValue as T
             liveData.value = response
         }
 
@@ -43,7 +82,7 @@ fun requestGenericResponse(deferred: Deferred<*>, liveData: MutableLiveData<*>, 
         try {
             val result = deferred.await()
             response.status = STATUS_SUCCESS
-            response.responseObject = result!!
+            response.responseObject = result as T
         } catch (httpE: HttpException) {
             response.status = STATUS_ERROR
             response.errorMessage = httpE.message()

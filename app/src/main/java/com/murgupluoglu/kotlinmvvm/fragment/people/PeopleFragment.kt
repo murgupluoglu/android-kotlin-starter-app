@@ -29,7 +29,7 @@ class PeopleFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         @Suppress("UNCHECKED_CAST")
-        peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<GenericResponse> { result ->
+        peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<GenericResponse<PeopleResponse>> { result ->
             LogUtils.e("RESULT $result")
             when(result.status){
                 STATUS_LOADING -> {
@@ -38,18 +38,22 @@ class PeopleFragment : BaseFragment() {
                 STATUS_SUCCESS -> {
                     multipleStatusView.showContent()
 
-                    val peopleResponse = result.responseObject as PeopleResponse
+                    val peopleResponse = result.responseObject
 
-                    if(!result.isFromCache){
-                        Paper.book().write("PEOPLE_RESULT", peopleResponse.results)
+                    peopleResponse?.let {
+                        if(!result.isFromCache){
+                            Paper.book().write("PEOPLE_RESULT", it.results)
+                        }
+
+                        LastAdapter(it.results, BR.viewModel)
+                                .map<User>(
+                                        Type<ItemUserBinding>(R.layout.item_user)
+                                                .onBind {}
+                                )
+                                .into(testRecylerView)
                     }
 
-                    LastAdapter(peopleResponse.results, BR.viewModel)
-                            .map<User>(
-                                    Type<ItemUserBinding>(R.layout.item_user)
-                                            .onBind {}
-                            )
-                            .into(testRecylerView)
+
                 }
                 STATUS_ERROR -> {
                     multipleStatusView.showError()

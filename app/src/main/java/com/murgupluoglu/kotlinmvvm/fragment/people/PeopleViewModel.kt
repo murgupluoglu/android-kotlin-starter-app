@@ -16,12 +16,12 @@ import kotlinx.coroutines.Job
 
 class PeopleViewModel(val networkModule: NetworkModule) : ViewModel(){
 
-    val peopleResponse: MutableLiveData<GenericResponse> = MutableLiveData()
+    val peopleResponse: MutableLiveData<GenericResponse<PeopleResponse>> = MutableLiveData()
     var job = Job()
 
 
     fun getPeoples(){
-        job = requestGenericResponse(networkModule.service().getPeoples(50), peopleResponse, returnFromCache = {getFromCache()})
+        job = peopleResponse.requestGenericResponse(networkModule.service().getPeoples(50), returnFromCache = {getFromCache()})
     }
 
     fun getFromCache() : Any? {

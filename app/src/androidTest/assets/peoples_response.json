@@ -1,0 +1,114 @@
+{
+  "results": [
+    {
+      "gender": "female",
+      "name": {
+        "title": "mrs",
+        "first": "buse",
+        "last": "kutlay"
+      },
+      "location": {
+        "street": "901 tunalı hilmi cd",
+        "city": "artvin",
+        "state": "artvin",
+        "postcode": 62832,
+        "coordinates": {
+          "latitude": "84.0265",
+          "longitude": "33.7112"
+        },
+        "timezone": {
+          "offset": "-9:00",
+          "description": "Alaska"
+        }
+      },
+      "email": "buse.kutlay@example.com",
+      "login": {
+        "uuid": "19611a11-9ad2-4e09-ada6-c136fb64eb2e",
+        "username": "happyrabbit208",
+        "password": "nancy",
+        "salt": "N2k5dLj2",
+        "md5": "893c35368b44f1245ac00371e8e6e552",
+        "sha1": "e1253345897c57dd4138c072583b7c7d48b86435",
+        "sha256": "94237a0d82bc54ade7e8b81ba699c230da267953cbcdde08e5cdb0ed93d77a52"
+      },
+      "dob": {
+        "date": "1957-07-11T12:59:25Z",
+        "age": 61
+      },
+      "registered": {
+        "date": "2009-03-12T23:41:59Z",
+        "age": 9
+      },
+      "phone": "(742)-871-9386",
+      "cell": "(392)-172-1087",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/91.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/91.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/91.jpg"
+      },
+      "nat": "TR"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "mrs",
+        "first": "gonca",
+        "last": "adıvar"
+      },
+      "location": {
+        "street": "7303 vatan cd",
+        "city": "şırnak",
+        "state": "manisa",
+        "postcode": 80430,
+        "coordinates": {
+          "latitude": "-29.8616",
+          "longitude": "129.0644"
+        },
+        "timezone": {
+          "offset": "0:00",
+          "description": "Western Europe Time, London, Lisbon, Casablanca"
+        }
+      },
+      "email": "gonca.adıvar@example.com",
+      "login": {
+        "uuid": "95f32c31-1eb0-4870-97bf-e8c971ab2669",
+        "username": "sadmouse897",
+        "password": "marianne",
+        "salt": "JBeQQjyy",
+        "md5": "7efebf8dad532eb8ec09151abce0838b",
+        "sha1": "3636afef0d6a76b18c9ef2f44b6cadfa2e8c2a03",
+        "sha256": "98ce23d296850acf4e5de66f0ccd5983f5b8b2ec400e8fbb7f075a240d49f8ac"
+      },
+      "dob": {
+        "date": "1973-08-12T16:31:16Z",
+        "age": 45
+      },
+      "registered": {
+        "date": "2017-04-15T22:38:50Z",
+        "age": 1
+      },
+      "phone": "(364)-053-8287",
+      "cell": "(553)-122-8090",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/64.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/64.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/64.jpg"
+      },
+      "nat": "TR"
+    }
+  ],
+  "info": {
+    "seed": "7ec31a5b013f8728",
+    "results": 2,
+    "page": 1,
+    "version": "1.2"
+  }
+}

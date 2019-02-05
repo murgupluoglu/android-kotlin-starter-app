@@ -9,7 +9,7 @@ import org.koin.dsl.module.module
 /**
 Created by mustafa.urgupluoglu on 6/27/18.
  */
-val myModule : Module = module {
+val myModules : Module = module {
     factory { MyRepository() }
     viewModel { SettingsViewModel(get()) }
     single { NetworkModule() }

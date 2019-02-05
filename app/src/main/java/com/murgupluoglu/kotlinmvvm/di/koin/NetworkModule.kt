@@ -9,6 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 Created by mustafa.urgupluoglu on 6/27/18.
  */
 class NetworkModule{
+
+    companion object {
+        var BASE_URL = "https://api.randomuser.me"
+    }
+
     fun service(): ServiceInterface {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
@@ -32,7 +37,7 @@ class NetworkModule{
         val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://api.randomuser.me")
+                .baseUrl(BASE_URL)
                 .client(clt)
                 .build()
 

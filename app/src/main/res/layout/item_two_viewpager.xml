@@ -17,20 +17,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutConstraintText"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="400dp"
         android:onClick="@{clickListener}"
         android:background="@color/white"
         android:orientation="horizontal">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpagbindViewPagerer"
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:bindViewPager="@{model.array}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:bindViewPager="@{model.array}"
+            android:layout_marginBottom="8dp"
+            app:bindViewPager2="@{model.array}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

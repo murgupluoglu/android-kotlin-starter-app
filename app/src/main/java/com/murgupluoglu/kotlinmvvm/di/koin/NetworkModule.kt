@@ -1,6 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.di.koin
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.murgupluoglu.kotlinmvvm.BuildConfig
 import com.murgupluoglu.kotlinmvvm.service.ServiceInterface
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +17,12 @@ class NetworkModule{
 
     fun service(): ServiceInterface {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        if(BuildConfig.DEBUG){
+            logging.level = HttpLoggingInterceptor.Level.BODY
+        }else{
+            logging.level = HttpLoggingInterceptor.Level.NONE
+        }
+
 
         val httpClient = okhttp3.OkHttpClient.Builder()
         httpClient.addInterceptor(logging)

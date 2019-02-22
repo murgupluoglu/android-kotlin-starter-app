@@ -33,7 +33,7 @@ class RecyclerViewFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fragmnetBinding = binding as FragmentRecyclerviewBinding
+        fragmnetBinding = _binding as FragmentRecyclerviewBinding
 
         viewModel = ViewModelProviders.of(this, CustomViewModelFactory(networkModule)).get(RecyclerViewModel::class.java)
         lifecycle.addObserver(viewModel)

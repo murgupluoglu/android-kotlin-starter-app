@@ -21,6 +21,7 @@ import org.koin.standalone.StandAloneContext
 import org.koin.standalone.inject
 import org.koin.test.KoinTest
 import retrofit2.HttpException
+import java.net.HttpURLConnection
 import java.util.concurrent.CountDownLatch
 
 /**
@@ -57,7 +58,7 @@ class ApiTest : KoinTest {
         val fileName = "peoples_response.json"
         mockServer.enqueue(
                 MockResponse()
-                        .setResponseCode(200)
+                        .setResponseCode(HttpURLConnection.HTTP_OK)
                         .setBody(TestUtils.getStringFromFile(InstrumentationRegistry.getInstrumentation().context, fileName))
         )
 

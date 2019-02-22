@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //AndroidSupportInjection.inject(this)
-        homeBinding = binding as FragmentHomeBinding
+        homeBinding = _binding as FragmentHomeBinding
 
         viewModel = ViewModelProviders.of(this, CustomViewModelFactory(networkModule)).get(HomeViewModel::class.java)
         lifecycle.addObserver(viewModel)

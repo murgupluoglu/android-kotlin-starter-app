@@ -16,13 +16,13 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment : Fragment() {
 
     abstract val layoutId: Int
-    lateinit var binding: ViewDataBinding
+    lateinit var _binding: ViewDataBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return binding.root
+        _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        return _binding.root
 
     }
 

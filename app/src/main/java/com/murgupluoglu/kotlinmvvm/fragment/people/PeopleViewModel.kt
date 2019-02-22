@@ -1,5 +1,6 @@
 package com.murgupluoglu.kotlinmvvm.fragment.people
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
@@ -19,6 +20,8 @@ class PeopleViewModel(val networkModule: NetworkModule) : ViewModel(){
     val peopleResponse: MutableLiveData<RESPONSE<PeopleResponse>> = MutableLiveData()
     var job = Job()
 
+
+    var title = ObservableField<String>("Peoples Title")
 
     fun getPeoples(){
         job = peopleResponse.request(networkModule.service().getPeoples(50), returnFromCache = {getFromCache()})

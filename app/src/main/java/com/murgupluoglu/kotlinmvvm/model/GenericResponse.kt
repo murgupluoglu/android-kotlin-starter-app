@@ -1,7 +1,9 @@
 package com.murgupluoglu.kotlinmvvm.model
 
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.net.UnknownHostException
 
@@ -21,12 +23,9 @@ data class RESPONSE<T>(
         var responseObject: T? = null
 )
 
-fun <T> MutableLiveData<RESPONSE<T>>.request(deferred: Deferred<*>, returnFromCache: () -> Any?): Job {
+fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, deferred: Deferred<*>, returnFromCache: () -> Any?) {
 
-    val job = Job()
-    val scope = CoroutineScope(job + Dispatchers.Main)
-
-    scope.launch {
+    viewModelScope.launch {
 
         val response = RESPONSE<T>()
         response.status = STATUS_LOADING
@@ -59,6 +58,4 @@ fun <T> MutableLiveData<RESPONSE<T>>.request(deferred: Deferred<*>, returnFromCa
 
         this@request.value = response
     }
-
-    return job
 }

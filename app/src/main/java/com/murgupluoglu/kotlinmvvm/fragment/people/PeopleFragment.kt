@@ -3,7 +3,6 @@ package com.murgupluoglu.kotlinmvvm.fragment.people
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.blankj.utilcode.util.LogUtils
 import com.github.nitrico.lastadapter.LastAdapter
 import com.github.nitrico.lastadapter.Type
 import com.murgupluoglu.kotlinmvvm.BR
@@ -31,9 +30,7 @@ class PeopleFragment : BaseFragment() {
 
         (_binding as FragmentPeopleBinding).model = peopleViewModel
 
-        @Suppress("UNCHECKED_CAST")
         peopleViewModel.peopleResponse.observe(this@PeopleFragment, Observer<RESPONSE<PeopleResponse>> { result ->
-            LogUtils.e("RESULT $result")
             when(result.status){
                 STATUS_LOADING -> {
                     multipleStatusView.showLoading()

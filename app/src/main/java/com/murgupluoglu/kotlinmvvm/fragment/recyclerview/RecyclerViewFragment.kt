@@ -52,7 +52,8 @@ class RecyclerViewFragment : BaseFragment() {
 
         val item = ViewPagerItem(
                 "title",
-                "http://www.tompetty.com/sites/g/files/g2000007521/f/styles/photo-carousel/public/sample001.jpg")
+                "http://www.tompetty.com/sites/g/files/g2000007521/f/styles/photo-carousel/public/sample001.jpg"
+        )
 
         array.add(item)
         array.add(item)

@@ -75,7 +75,12 @@ dependencies {
     implementation "com.google.android.material:material:1.0.0"
     implementation "androidx.vectordrawable:vectordrawable:1.0.1"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
+    //kapt "androidx.lifecycle:lifecycle-compiler:2.1.0-alpha02"
+    //
 
     //Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
@@ -115,8 +120,8 @@ dependencies {
     //
 
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
     //
 
     //Generic Utils

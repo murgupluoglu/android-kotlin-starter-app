@@ -21,7 +21,11 @@ data class RESPONSE<T>(
         var responseObject: T? = null
 )
 
-fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, deferred: Deferred<*>, returnFromCache: () -> Any?) {
+interface CacheListener{
+    fun getCachedObject() : Any
+}
+
+fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, deferred: Deferred<*>, cacheListener: CacheListener? = null) {
 
     viewModelScope.launch {
 
@@ -29,13 +33,14 @@ fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, de
         response.status = STATUS_LOADING
         this@request.value = response
 
-        val cacheValue = returnFromCache()
-        if(cacheValue != null){
+        if(cacheListener != null){
+            val cacheValue = cacheListener.getCachedObject()
             response.status = STATUS_SUCCESS
             response.isFromCache = true
             response.responseObject =  cacheValue as T
             this@request.value = response
         }
+
 
         response.isFromCache = false
         try {
@@ -58,12 +63,12 @@ fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, de
     }
 }
 
-fun <T> MutableLiveData<RESPONSE<T>>.request(deferred: Deferred<*>, returnFromCache: () -> Any?): Job {
+fun <T> MutableLiveData<RESPONSE<T>>.request(deferred: Deferred<*>, cacheListener: CacheListener? = null): Job {
 
     val job = Job()
     val scope = CoroutineScope(job + Dispatchers.Main)
 
-    request(scope, deferred, returnFromCache)
+    request(scope, deferred, cacheListener)
 
     return job
 }

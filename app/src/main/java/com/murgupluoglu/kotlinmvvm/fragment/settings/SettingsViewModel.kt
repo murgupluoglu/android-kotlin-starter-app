@@ -20,6 +20,6 @@ class SettingsViewModel(val networkModule: NetworkModule) : ViewModel(){
     val genericResponsList : MutableLiveData<RESPONSE<List<JsonPlaceHolderResponse>>> = MutableLiveData()
 
     fun getServerData(){
-        genericResponsList.request(viewModelScope, networkModule.service().getPosts("https://jsonplaceholder.typicode.com/posts"), returnFromCache = {null})
+        genericResponsList.request(viewModelScope, networkModule.service().getPosts("https://jsonplaceholder.typicode.com/posts"))
     }
 }

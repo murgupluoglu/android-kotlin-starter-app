@@ -11,6 +11,10 @@ import com.murgupluoglu.kotlinmvvm.databinding.FragmentPeopleBinding
 import com.murgupluoglu.kotlinmvvm.databinding.ItemUserBinding
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.model.*
+import com.murgupluoglu.kotlinmvvm.utils.RESPONSE
+import com.murgupluoglu.kotlinmvvm.utils.STATUS_ERROR
+import com.murgupluoglu.kotlinmvvm.utils.STATUS_LOADING
+import com.murgupluoglu.kotlinmvvm.utils.STATUS_SUCCESS
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_people.*
 import org.koin.android.viewmodel.ext.android.viewModel

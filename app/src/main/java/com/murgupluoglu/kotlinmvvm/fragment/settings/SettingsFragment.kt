@@ -8,7 +8,7 @@ import com.murgupluoglu.kotlinmvvm.databinding.FragmentSettingsBinding
 import com.murgupluoglu.kotlinmvvm.di.koin.MyRepository
 import com.murgupluoglu.kotlinmvvm.fragment.BaseFragment
 import com.murgupluoglu.kotlinmvvm.model.*
-import com.murgupluoglu.kotlinmvvm.utils.log
+import com.murgupluoglu.kotlinmvvm.utils.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 

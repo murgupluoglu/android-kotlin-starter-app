@@ -1,4 +1,4 @@
-package com.murgupluoglu.kotlinmvvm.model
+package com.murgupluoglu.kotlinmvvm.utils
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
@@ -22,9 +22,10 @@ data class RESPONSE<T>(
 )
 
 interface CacheListener{
-    fun getCachedObject() : Any
+    fun getCachedResponse() : Any
 }
 
+@Suppress("UNCHECKED_CAST")
 fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, deferred: Deferred<*>, cacheListener: CacheListener? = null) {
 
     viewModelScope.launch {
@@ -34,7 +35,7 @@ fun <T> MutableLiveData<RESPONSE<T>>.request(viewModelScope : CoroutineScope, de
         this@request.value = response
 
         if(cacheListener != null){
-            val cacheValue = cacheListener.getCachedObject()
+            val cacheValue = cacheListener.getCachedResponse()
             response.status = STATUS_SUCCESS
             response.isFromCache = true
             response.responseObject =  cacheValue as T

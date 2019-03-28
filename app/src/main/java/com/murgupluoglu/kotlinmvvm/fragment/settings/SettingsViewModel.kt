@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.murgupluoglu.kotlinmvvm.di.koin.NetworkModule
 import com.murgupluoglu.kotlinmvvm.model.JsonPlaceHolderResponse
-import com.murgupluoglu.kotlinmvvm.model.RESPONSE
-import com.murgupluoglu.kotlinmvvm.model.request
+import com.murgupluoglu.kotlinmvvm.utils.RESPONSE
+import com.murgupluoglu.kotlinmvvm.utils.request
 
 /**
  * Created by mustafa.urgupluoglu on 2/5/18.

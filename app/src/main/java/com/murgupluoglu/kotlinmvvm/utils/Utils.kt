@@ -1,6 +1,7 @@
 package com.murgupluoglu.kotlinmvvm.utils
 
 import android.util.Log
+import com.blankj.utilcode.util.LogUtils
 import com.murgupluoglu.kotlinmvvm.BuildConfig
 
 
@@ -9,7 +10,5 @@ import com.murgupluoglu.kotlinmvvm.BuildConfig
  */
 
 fun String.log() {
-    if (BuildConfig.DEBUG) {
-        Log.e("DEBUG_LOG: ", this)
-    }
+    LogUtils.e(this)
 }

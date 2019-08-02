@@ -33,6 +33,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     dataBinding {
         enabled = true
     }
@@ -125,13 +126,13 @@ dependencies {
     //
 
     //Generic Utils
-    implementation 'com.blankj:utilcode:1.24.2'
+    implementation 'com.blankj:utilcode:1.25.5'
     //
 
     //For demonstration
     implementation 'com.classic.common:multiple-status-view:1.5.1'
     implementation 'com.github.nitrico.lastadapter:lastadapter:2.3.0'
     implementation 'io.paperdb:paperdb:2.6'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-beta02'
     //
 }

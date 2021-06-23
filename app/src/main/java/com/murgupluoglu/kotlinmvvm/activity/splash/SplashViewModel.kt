@@ -1,4 +1,4 @@
-package com.murgupluoglu.kotlinmvvm.activity
+package com.murgupluoglu.kotlinmvvm.activity.splash
 
 import androidx.lifecycle.ViewModel
 import com.murgupluoglu.kotlinmvvm.api.ServiceInterface
@@ -16,7 +16,7 @@ class SplashViewModel @Inject constructor(
     private val service: ServiceInterface
 ) : ViewModel() {
 
-    fun test(){
+    fun test() {
         println(service)
     }
 }

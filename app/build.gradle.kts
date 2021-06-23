@@ -59,6 +59,7 @@ dependencies {
     implementation(SupportLibs.MATERIAL)
     implementation(SupportLibs.PREFERENCE_KTX)
     implementation(SupportLibs.WORK)
+    implementation(SupportLibs.LIFECYCLE_COMMON)
 
     implementation(Retrofit.RETROFIT)
     implementation(Retrofit.CONVERTER_GSON)
@@ -70,4 +71,5 @@ dependencies {
     kapt(Dagger.KAPT_COMPILER)
 
     implementation(Utils.BLANKJ)
+    implementation(Utils.REQUEST)
 }

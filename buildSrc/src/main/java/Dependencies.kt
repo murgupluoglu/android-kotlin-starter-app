@@ -5,9 +5,11 @@ object SupportLibs {
     const val MATERIAL = "com.google.android.material:material:1.3.0"
     const val PREFERENCE_KTX = "androidx.preference:preference-ktx:1.1.1"
     const val WORK = "androidx.work:work-runtime-ktx:2.5.0"
+    const val lifecycleVersion = "2.3.1"
+    const val LIFECYCLE_COMMON =  "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 }
 
-object Retrofit{
+object Retrofit {
     const val retrofitVersion = "2.9.0"
     const val okhttpVersion = "4.9.0"
     const val RETROFIT = "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -17,11 +19,12 @@ object Retrofit{
     const val OKHTTP_URLCONNECTION = "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
 }
 
-object Utils{
+object Utils {
     const val BLANKJ = "com.blankj:utilcodex:1.30.6"
+    const val REQUEST = "com.github.murgupluoglu:request-android:5.0.0"
 }
 
-object Dagger{
+object Dagger {
     const val daggerVersion = "2.36"
     const val HILT = "com.google.dagger:hilt-android:$daggerVersion"
     const val KAPT_COMPILER = "com.google.dagger:hilt-android-compiler:$daggerVersion"

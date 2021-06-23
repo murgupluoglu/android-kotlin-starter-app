@@ -6,9 +6,12 @@ package com.murgupluoglu.kotlinmvvm.api.response
 *  Copyright © 2021 Mustafa Ürgüplüoğlu. All rights reserved.
 */
 
-data class JsonPlaceHolderResponse(
-    var userId: Int = 0,
-    var id: Int = 0,
-    var title: String = "",
-    var body: String = ""
+data class PersonModel(
+    var name: PersonNameModel
+)
+
+data class PersonNameModel(
+    val title: String,
+    val first: String,
+    val last: String,
 )

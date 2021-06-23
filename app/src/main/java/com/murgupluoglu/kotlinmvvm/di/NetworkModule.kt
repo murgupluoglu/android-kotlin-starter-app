@@ -17,14 +17,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @InstallIn(SingletonComponent::class)
 @Module
-object NetworkModule{
+object NetworkModule {
 
     @Provides
     fun service(): ServiceInterface {
         val logging = HttpLoggingInterceptor()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             logging.level = HttpLoggingInterceptor.Level.BODY
-        }else{
+        } else {
             logging.level = HttpLoggingInterceptor.Level.NONE
         }
 
@@ -51,6 +51,6 @@ object NetworkModule{
             .client(clt)
             .build()
 
-        return retrofit.create<ServiceInterface>(ServiceInterface::class.java)
+        return retrofit.create(ServiceInterface::class.java)
     }
 }

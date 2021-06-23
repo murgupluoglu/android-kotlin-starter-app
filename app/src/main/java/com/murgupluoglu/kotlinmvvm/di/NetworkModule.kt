@@ -47,7 +47,7 @@ object NetworkModule {
         val clt = httpClient.build()
         val retrofit = retrofit2.Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://api.randomuser.me")
+            .baseUrl("https://fakestoreapi.com")
             .client(clt)
             .build()
 

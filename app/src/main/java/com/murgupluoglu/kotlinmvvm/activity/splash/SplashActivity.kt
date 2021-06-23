@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ActivityUtils
-import com.murgupluoglu.kotlinmvvm.R
 import com.murgupluoglu.kotlinmvvm.activity.main.MainActivity
 import com.murgupluoglu.kotlinmvvm.databinding.ActivitySplashBinding
 import com.murgupluoglu.kotlinmvvm.utils.viewBinding

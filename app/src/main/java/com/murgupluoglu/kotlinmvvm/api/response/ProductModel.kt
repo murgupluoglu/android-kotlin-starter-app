@@ -6,12 +6,7 @@ package com.murgupluoglu.kotlinmvvm.api.response
 *  Copyright © 2021 Mustafa Ürgüplüoğlu. All rights reserved.
 */
 
-data class PersonModel(
-    var name: PersonNameModel
-)
-
-data class PersonNameModel(
-    val title: String,
-    val first: String,
-    val last: String,
+data class ProductModel(
+    var id: String,
+    var title: String
 )

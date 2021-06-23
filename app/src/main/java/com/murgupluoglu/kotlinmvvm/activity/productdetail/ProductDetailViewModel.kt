@@ -1,4 +1,4 @@
-package com.murgupluoglu.kotlinmvvm.activity.main
+package com.murgupluoglu.kotlinmvvm.activity.productdetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,16 +15,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class ProductDetailViewModel @Inject constructor(
     private val service: ServiceInterface
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<Request<List<ProductModel>>>(Request.Empty)
-    val uiState: StateFlow<Request<List<ProductModel>>> get() = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<Request<ProductModel>>(Request.Empty)
+    val uiState: StateFlow<Request<ProductModel>> get() = _uiState.asStateFlow()
 
-    fun getProducts() {
+    fun getPerson(productId: String) {
         viewModelScope.launch {
-            requestFlow { service.getProducts() }.collect { response ->
+            requestFlow { service.getProduct(productId) }.collect { response ->
                 _uiState.value = response
             }
         }

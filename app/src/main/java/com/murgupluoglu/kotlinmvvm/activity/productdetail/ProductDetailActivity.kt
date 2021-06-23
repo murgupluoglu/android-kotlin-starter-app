@@ -1,37 +1,41 @@
-package com.murgupluoglu.kotlinmvvm.activity.main
+package com.murgupluoglu.kotlinmvvm.activity.productdetail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.LogUtils
-import com.murgupluoglu.kotlinmvvm.activity.productdetail.ProductDetailActivity
-import com.murgupluoglu.kotlinmvvm.api.response.ProductModel
-import com.murgupluoglu.kotlinmvvm.databinding.ActivityMainBinding
+import com.murgupluoglu.kotlinmvvm.databinding.ActivityProductDetailBinding
 import com.murgupluoglu.kotlinmvvm.utils.viewBinding
 import com.murgupluoglu.request.Request
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class ProductDetailActivity : AppCompatActivity() {
 
-    private val binding by viewBinding(ActivityMainBinding::inflate)
+    companion object {
+        private val PARAM_SEED_ID = "PARAM_SEED_ID"
+        fun newInstance(context: Context, seedId: String): Intent {
+            return Intent(context, ProductDetailActivity::class.java).apply {
+                putExtra(PARAM_SEED_ID, seedId)
+            }
+        }
+    }
 
-    private val viewModel: MainViewModel by viewModels()
+    private val binding by viewBinding(ActivityProductDetailBinding::inflate)
 
-    private lateinit var productAdapter: ProductAdapter
-    private var products = ArrayList<ProductModel>()
+    private val viewModel: ProductDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupAdapter()
+        val seedId = intent.extras!!.getString(PARAM_SEED_ID)!!
         setupObservers()
-        viewModel.getProducts()
+        viewModel.getPerson(seedId)
     }
 
     private fun setupObservers() {
@@ -49,8 +53,8 @@ class MainActivity : AppCompatActivity() {
                     is Request.Success -> {
                         LogUtils.d("Success", uiState.data)
 
-                        products.addAll(uiState.data)
-                        productAdapter.notifyDataSetChanged()
+                        binding.nameTextView.text =
+                            "id: ${uiState.data.id} name: ${uiState.data.title}"
                     }
                     is Request.Error -> {
                         LogUtils.d("Error", uiState.error)
@@ -60,16 +64,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun setupAdapter() {
-        productAdapter = ProductAdapter(products) { product ->
-            LogUtils.d("Clicked", product)
-            ActivityUtils.startActivity(ProductDetailActivity.newInstance(this, product.id))
-        }
-        binding.peopleRecyclerView.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
-        binding.peopleRecyclerView.adapter = productAdapter
     }
 }
